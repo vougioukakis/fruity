@@ -34,7 +34,16 @@ let fruitFacts = [
 app.get('/:fruit', (req, res) => {
     const fruit = req.params.fruit.toLowerCase();
     if (fruitData[fruit]) {
-        res.json({ [fruit]: fruitData[fruit] });
+        console.log('returning data for fruit :'+fruit);
+        const response = {
+            'name':fruit,
+            'calories':fruitData[fruit].calories,
+            'carbs': fruitData[fruit].carbs,
+            'protein': fruitData[fruit].protein,
+            'fat': fruitData[fruit].fat
+        }
+        console.log('response: ' + JSON.stringify(response));
+        res.json(response);
     } else {
         res.status(404).json({ error: 'Fruit not found'});
     }
