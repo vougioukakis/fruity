@@ -1,4 +1,4 @@
-function addEvListenerToGetFactBtn(){
+async function addEvListenerToGetFactBtn(){
 	const button = document.getElementById('get-fact-btn');
     button.addEventListener('click', getFact);
 }
@@ -7,6 +7,11 @@ async function getFact() {
 	try {
 		const response = await fetch(`/get-fact`, {method:'GET'});
 		const data = await response.json();
+
+		if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
 		document.getElementById("fact-text").innerHTML = data.fact;
 
 	} catch (error) {
@@ -26,52 +31,65 @@ JSON form with disease_1, disease_2 and disease_3 fields/
 If something goes wrong or one of them is blank, make sure it has an error field.
 @returns {void}
  */
-function addEvListenerToDiagnoseButton() {
+async function addEvListenerToDiagnoseButton() {
 
 	// TODO: add event listener to 'submit' form and handle it here instead of calling /upload from the html
 	const form = document.querySelector("form.file-upload");
 	console.log("trying to add event listener...");
 
 	if (form) {
-		document.querySelector("form.file-upload").addEventListener("submit", function (e) {
-			e.preventDefault();
-			console.log("form submitted.");
-
-			const fileInput = document.getElementById("image-input");
-			const formData = new FormData();
-
-			formData.append("disease-image", fileInput.files[0]);
-
-			// fetch the response from the '/upload' route - our json results for the prediction
-			fetch("/upload", {
-				method: "POST",
-				body: formData,
-			})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("Data:", data); // for now this is just the fruit name
-
-				// if something went wrong, theres an error field
-				if (data.error) {
-					console.error("Error: ", data.error);
-					resetForm();
-					showErrorResult(data.error);
-					markLastAsDone();
-					return; // stop processing and show error message to user
-				} else {
-					document.getElementById('fruit-name').innerHTML = data.name;
-				}
-			})
-			.catch((error) => {
-				console.error(
-					"Error in diagnose button promise chain: ",
-					error
-				);
-			});
-
-		});
+		document.querySelector("form.file-upload").addEventListener("submit", uploadImage);
 	} else {
 		console.log("something went wrong with the diagnose button form");
+	}
+}
+
+async function uploadImage(e){
+	e.preventDefault();
+	console.log("form submitted.");
+
+	const fileInput = document.getElementById("image-input");
+	const formData = new FormData();
+
+	formData.append("disease-image", fileInput.files[0]);
+
+	try {
+		const response = await fetch("/upload", {
+			method: "POST",
+			body: formData,
+		})
+
+		console.log(response.status);
+		console.log(JSON.stringify(response));
+
+		if (!response.ok) {
+			throw new Error("Network response was not ok.");
+		}
+		
+		const data = await response.json();
+
+		console.log("Data:", data);
+
+		if (data.error) {
+			console.error("Error: ", data.error);
+			showErrorResult(data.error);
+			return; // stop processing and show error message to user
+		} else {
+			document.getElementById('output-area').innerHTML = `
+            <li class="results-item">Fruit: ${data.name}</li>
+            <li class="results-item">Calories: ${data.calories}</li>
+            <li class="results-item">Carbs: ${data.carbs}g</li>
+            <li class="results-item">Protein: ${data.protein}g</li>
+            <li class="results-item">Fat: ${data.fat}g</li>
+        `;
+			
+		}
+
+	} catch (error) {
+		console.error(
+			"Error in diagnose button promise chain: ",
+			error
+		);
 	}
 }
 

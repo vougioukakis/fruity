@@ -1,6 +1,6 @@
 from model_stuff import predict
 from quart import Quart, render_template, request, jsonify, redirect
-import requests
+import httpx
 app = Quart(__name__)
 
 
@@ -38,35 +38,44 @@ async def upload_file():
         else:
             # sort the dictionary by value in descending order
             sorted_items = sorted(data.items(), key=lambda x: x[1], reverse=True)
-            print('top prediction fruit: ', sorted_items[0][0])
+            fruit = sorted_items[0][0]
+            print('top prediction fruit: ', fruit)
 
             #TODO: pull the fruit info from the API here
+            nutrition = await get_nutrition(fruit)
+            print('nutrition facts: ', nutrition)
             
-            return jsonify({'name':sorted_items[0][0]})
+            return nutrition
     else:
         print('No file found in request. Exiting...')
         return jsonify({'error': 'No file found in the request.'}), 400
     
-@app.route('/get-nutrition/<fruit>', methods=['GET'])
 async def get_nutrition(fruit):
     try:
-        response = await requests.get(f"{API_URL}/{fruit}")
+        async with httpx.AsyncClient() as client:
+            response = await client.get(f"{API_URL}/{fruit}")
+        
         if response.status_code == 200:
-            return jsonify(response.json())
+            print('response =', response.json())
+            return response.json()
         else:
-            return jsonify({"error": "Fruit not found"}), 404
+            return {"error": "Fruit not found"}, 404
+
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print('error', e)
+        return {"error": str(e)}, 500
 
 @app.route('/get-fact', methods=['GET'])
 async def get_fact():
     try:
-        response = requests.get(f"{API_URL}/facts/random")
-        if response.status_code == 200:
-            return jsonify(response.json())
-        else:
-            return jsonify({"error": "No facts found"}), 404
+        print('/get-fact route hit')
+        async with httpx.AsyncClient() as client:
+            response = await client.get(f"{API_URL}/facts/random")
+        
+        print('response:', response)
+        return jsonify(response.json())
     except Exception as e:
+        print('error', e)
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
