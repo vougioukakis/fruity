@@ -1,0 +1,1 @@
+A web app with a simple fruit image recognition model that provides nutritional information about the recognized fruit, as well as random fruit facts!
