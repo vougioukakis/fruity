@@ -1,6 +1,59 @@
+async function addEvListenerToAddFactBtn(){
+	const button = document.getElementById('add-fact-btn');
+    button.addEventListener('click', showFactInput);
+}
+
 async function addEvListenerToGetFactBtn(){
 	const button = document.getElementById('get-fact-btn');
     button.addEventListener('click', getFact);
+}
+
+async function addEvListenerToSubmitFactBtn(){
+	const button = document.getElementById('submit-fact-btn');
+    button.addEventListener('click', addFact);
+}
+
+async function showFactInput(){
+	document.getElementById('fact-input-container').style.display = 'block';
+}
+async function addFact(){
+	try {
+		const factInput = document.getElementById('fact-input');
+        const fact = factInput.value;
+
+        if (fact.trim() === '') {
+            throw new Error('Invalid fact');
+        }
+
+        const response = await fetch(`/add-fact`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fact: fact })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`HTTP error status ${response.status}`);
+        }
+
+        document.getElementById("fact-text").innerHTML = `
+            <p>fact added successfully: ${data.fact}</p>
+        `;
+
+        factInput.value = '';
+		document.getElementById("fact-input-container").style.display = 'none';
+	} catch (e) {
+		document.getElementById("fact-text").innerHTML = `
+            <p style="color: red;">Error: ${e.message}</p>
+        `;
+    
+		factInput.value = '';
+		console.error('error:', e);
+		factInput.focus();
+		document.getElementById("fact-input-container").style.display = 'none';
+
+	}
 }
 
 async function getFact() {
@@ -24,7 +77,7 @@ async function getFact() {
 async function addEventListenerDiagnoseButton(){
 	// submit event listener for the form to call uploadImage once submitted
 	const form = document.querySelector("form.file-upload");
-	console.log("trying to add event listener...");
+	console.log("adding event listener to run button...");
 
 	if (form) {
 		document.querySelector("form.file-upload").addEventListener("submit", uploadImage);
@@ -139,6 +192,8 @@ function init() {
 	addEventListenerDiagnoseButton();
 	addEvListenerToImgInputField();
 	addEvListenerToGetFactBtn();
+	addEvListenerToAddFactBtn();
+	addEvListenerToSubmitFactBtn();
 }
 
 document.addEventListener("DOMContentLoaded", init);

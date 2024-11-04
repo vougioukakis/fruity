@@ -78,6 +78,25 @@ async def get_fact():
         print('error', e)
         return jsonify({"error": str(e)}), 500
 
+@app.route('/add-fact', methods=['POST'])
+async def add_fact():
+    try:
+        print('/add-fact route hit')
+
+        # frontend request data
+        request_data = await request.json
+        print('request_data:', request_data)
+
+        # send request to API to add the fact to the database
+        async with httpx.AsyncClient() as client:
+            response = await client.post(f"{API_URL}/facts", json=request_data)
+        
+        print('response:', response)
+        return jsonify(response.json())
+    except Exception as e:
+        print('error', e)
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(port=port, debug=True)
 
