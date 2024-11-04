@@ -85,6 +85,8 @@ async def add_fact():
 
         # frontend request data
         request_data = await request.json
+        # await request.json() caused error, look at coroutines
+        
         print('request_data:', request_data)
 
         # send request to API to add the fact to the database

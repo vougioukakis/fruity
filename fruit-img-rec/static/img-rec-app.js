@@ -1,19 +1,19 @@
-async function addEvListenerToAddFactBtn(){
+function addEvListenerToAddFactBtn(){
 	const button = document.getElementById('add-fact-btn');
     button.addEventListener('click', showFactInput);
 }
 
-async function addEvListenerToGetFactBtn(){
+function addEvListenerToGetFactBtn(){
 	const button = document.getElementById('get-fact-btn');
     button.addEventListener('click', getFact);
 }
 
-async function addEvListenerToSubmitFactBtn(){
+function addEvListenerToSubmitFactBtn(){
 	const button = document.getElementById('submit-fact-btn');
     button.addEventListener('click', addFact);
 }
 
-async function showFactInput(){
+function showFactInput(){
 	document.getElementById('fact-input-container').style.display = 'block';
 }
 async function addFact(){
@@ -74,7 +74,7 @@ async function getFact() {
 	}
 }
 
-async function addEventListenerDiagnoseButton(){
+function addEventListenerDiagnoseButton(){
 	// submit event listener for the form to call uploadImage once submitted
 	const form = document.querySelector("form.file-upload");
 	console.log("adding event listener to run button...");
