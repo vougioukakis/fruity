@@ -15,13 +15,10 @@
     <div id="main-area">
       
       <div class="input-bar-container" id="bottom-bar">
-        <form class="file-upload" enctype="multipart/form-data">
+        <form class="file-upload" enctype="multipart/form-data" id="image-form">
           <span id="file-upload-label" class="file-upload-label" style="display: none;">No file chosen</span>
-  
           <label for="image-input" id="upload-button"><img src = "../static/assets/plus.png" alt="add-file" id="upload-icon"/></label>
           <input type="file" id="image-input" name="disease-image" accept="image/*">
-  
-          <button type="submit" id="diagnose-button" disabled>Recognise</button>
         </form>
 
         <img id="fruit-img" style="width: 250px; height: 250px;">
@@ -37,6 +34,9 @@
       </div>
 
       <button id="get-fact-btn">Get Fact</button>
+      <button id="add-fact-btn">Add Fact</button>
+      <button id="diagnose-button" type="submit" form="image-form" disabled>Recognise</button>
+
       
     </div>
 
