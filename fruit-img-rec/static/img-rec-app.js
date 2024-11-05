@@ -122,6 +122,7 @@ async function uploadImage(e){
 		} else {
 			document.getElementById('output-area').innerHTML = `<ul>
             <li class="results-item">Fruit: ${data.name}</li>
+			<li>Nutrition per 100 grams:</li>
             <li class="results-item">Calories: ${data.calories}</li>
             <li class="results-item">Carbs: ${data.carbs}g</li>
             <li class="results-item">Protein: ${data.protein}g</li>

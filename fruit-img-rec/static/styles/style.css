@@ -1,7 +1,65 @@
+:root {
+    --blue: #243CE6;
+    --blue-light: #C1C7F3;
+    --pink: #FF66C4;
+    --pink-light: #FFCBEB;
+    --yellow: #FFBD59;
+    --yellow-light: #FFE8C7;
+    --green:#00BF63;
+    --green-light: #BBE9CA;
+}
+
+.bowlby-one-regular {
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#header {
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    padding-inline: calc(9vw + 1vh);
+    padding-top: 6vh;
+    color: var(--blue);
+}
+
+#footer{
+    color: var(--blue);
+}
+
 body {
     background-image: url('../assets/bg.png');
-    background-size: cover;
+    background-size: 120%; /* Ensures the image covers the entire body */
+    background-attachment: fixed; /* Keeps the background fixed as you scroll */
+    animation: moveBackground 20s infinite alternate; /* Animation with infinite loop */
+    font-family: "Alegreya Sans", sans-serif;
+    line-height: 1.6;
+
+
 }
+  
+  @keyframes moveBackground {
+    0% {
+      background-position: 0% 0%; /* Initial position */
+    }
+    25% {
+      background-position: 25% 10%; /* Moves slightly to the right and down */
+    }
+    50% {
+      background-position: 50% 20%; /* Moves more to the right and down */
+    }
+    75% {
+      background-position: 75% 10%; /* Moves back to the right and slightly up */
+    }
+    100% {
+      background-position: 100% 0%; /* Final position, full horizontal movement */
+    }
+  }
 /* Reset default margin and padding for all elements */
 * {
     margin: 0;
@@ -9,23 +67,12 @@ body {
     box-sizing: border-box;
 }
 
-/* General styling for the body */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
+
 
 ul {
     list-style-type: none;
-    padding: 20px;
-}
-
-/* Header styling */
-#header {
-    text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    padding: 1vw;
+    color: var(--blue);
 }
 
 #fruit-img{
@@ -34,27 +81,26 @@ ul {
   object-fit: cover;
   border-radius: inherit;
 }
-/* Main area styling */
+
 #main-area {
     display: flex;
     flex-direction: row;
-    padding-inline: 10vw;
-    height: calc(100vh - 185px); /* Adjust the height considering header and footer */
-    padding-block: 2vh;
+    padding-inline: calc(9vw + 1vh);
+    padding-block: calc(6vmin + -3vh);
+    height: clamp(390px, calc(100vh - 190px), 65vh);
+    /*! height: 400px; */
 }
 
-/* Content section styling */
 #content {
-    flex: 1; /* Take up remaining space */
+    flex: 1;
     display: flex;
     flex-direction: row;
     gap: 3vmin;
     background: rgba(255,255,255,0.4);
     padding: 3vmin;
-    border-radius: 6vmin;
+    border-radius: 4vmin;
 }
 
-/* Input bar container styling */
 .input-bar-container {
     flex: 1;
     display: flex;
@@ -62,20 +108,71 @@ ul {
     align-items: center;
     border: 1px solid #ddd;
     /*! padding: 10px; */
-    height: 100%; /* Make it fill the available vertical space */
-    border-radius: 3.5vmin;
+    height: 100%;
+    border-radius: 1.75vmin;
     /*! object-fit: cover; */
 }
+
+/* -------- BUTTONS ------------- */
 button {
-    border-radius: 5vmin;
-    box-shadow: 0px 10px 0px -1px red;
+    border-radius: 4vmin;
     border: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+button:active {
+    transform: translateY(10px);
+}
+
+#upload-button {
+    color: var(--blue);
+    background-color: var(--blue-light);
+    box-shadow: 0px 10px 0px -1px var(--blue);
+}
+#upload-button:active {
+    box-shadow: 0px 0px 0px -1px var(--blue);
+}
+
+#get-fact-btn {
+    color: var(--yellow);
+    background-color: var(--yellow-light);
+    box-shadow: 0px 10px 0px -1px var(--yellow);
+}
+#get-fact-btn:active{
+    box-shadow: 0px 0px 0px -1px var(--yellow);
+}
+
+#add-fact-btn {
+    color: var(--pink);
+    background-color: var(--pink-light);
+    box-shadow: 0px 10px 0px -1px var(--pink);
+}
+#add-fact-btn:active {
+    box-shadow: 0px 0px 0px -1px var(--pink);
+}
+
+
+#diagnose-button {
+    color: var(--green);
+    background-color: var(--green-light);
+    box-shadow: 0px 10px 0px -1px var(--green);
+}
+#diagnose-button:active {
+    box-shadow: 0px 0px 0px -1px var(--green);
+}
+
+.svg-icon {
+    max-width: 90%;
+    max-height: 90%;
+    width: clamp(45px, 3em, 70%);
+    height: clamp(45px, 3em, 70%);
+    fill: currentColor;
 }
 
 #fact-text{
-    padding: 20px;
+    padding: 1vw;
+    color: var(--blue);
 }
-/* Right section styling */
+
 #right {
     flex: 1;
     display: flex;
@@ -84,32 +181,28 @@ button {
 }
 
 #output-area {
-    flex: 1;
+    flex: 3;
     padding: 10px;
-    border: 1px solid #ddd;
-    background: rgba(255,255,255,0.4);
-    border-radius: 3.5vmin;
+    background: rgba(255,255,255,0.5);
+    border-radius: 1.75vmin;
 }
 
 #fact-container {
-    flex: 1;
+    flex: 2;
     padding: 10px;
-    border: 1px solid #ddd;
-    background: rgba(255,255,255,0.4);
-    border-radius: 3.5vmin;
+    background: rgba(255,255,255,0.5);
+    border-radius: 1.75vmin;
 }
 
-/* Button container styling */
 #button-container {
-    width: 15vw; /* Fixed width for the buttons */
+    width: 13vw;
     display: inline-grid;
     flex-direction: column;
-    gap: 22px;
-    margin-left: 2.8vmin; /* Space between content and button container */
+    gap: 3vh;
+    margin-left: 4vmin;
     padding-bottom: 10px;
 }
 
-/* Fact input container styling (absolute positioning) */
 #fact-input-container {
     position: absolute;
     top: 50%;
@@ -121,9 +214,16 @@ button {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer styling */
 #footer {
     text-align: center;
     padding: 20px;
     font-size: 12px;
+}
+
+@media (max-aspect-ratio: 3/2) {
+    body {
+      background-image: url('../assets/bg-land.png');
+      background-size: cover;
+      background-position: center;
+    }
 }
