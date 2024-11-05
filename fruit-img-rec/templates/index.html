@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRUITY</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
 </head>
 <body>
 
@@ -13,28 +14,37 @@
 
     <div id="main-area">
       
-      <div class="input-bar-container" id="bottom-bar">
-        <form class="file-upload" enctype="multipart/form-data" id="image-form">
-          <span id="file-upload-label" class="file-upload-label" style="display: none;">No file chosen</span>
-          <label for="image-input" id="upload-button"><img src = "../static/assets/plus.png" alt="add-file" id="upload-icon"/></label>
-          <input type="file" id="image-input" name="disease-image" accept="image/*">
-        </form>
-
-        <img id="fruit-img" style="width: 250px; height: 250px;">
+      <div id="content">
+        <div class="input-bar-container" id="bottom-bar">
+          <form class="file-upload" enctype="multipart/form-data" id="image-form">
+            <span id="file-upload-label" class="file-upload-label" style="display: none;">No file chosen</span>
+            <!--<label for="image-input" id="upload-button"></label>-->
+          </form>
+  
+          <img id="fruit-img">
+        </div>
+        
+        <div id="right">
+          <div id="output-area">
+            <ul>
+            </ul>
+          </div>
+    
+          <div id="fact-container">
+            <div id="fact-text"></div>
+          </div>
+        </div>
+        
       </div>
-
-      <div id="output-area">
-        <ul>
-        </ul>
+      
+      <div id="button-container">
+        <input type="file" form="image-form" name="disease-image" id="image-input" accept="image/*" style="display:none;"/>
+        <button id="upload-button"><label for="image-input">Upload photo</label></button>
+        <button id="get-fact-btn">Get Fact</button>
+        <button id="add-fact-btn">Add Fact</button>
+        <button id="diagnose-button" type="submit" form="image-form" disabled>Recognise</button>
       </div>
-
-      <div id="fact-container">
-        <div id="fact-text"></div>
-      </div>
-
-      <button id="get-fact-btn">Get Fact</button>
-      <button id="add-fact-btn">Add Fact</button>
-      <button id="diagnose-button" type="submit" form="image-form" disabled>Recognise</button>
+  
     </div>
 
     <div id="fact-input-container" style="position: absolute; display: none;">
@@ -46,6 +56,8 @@
       Vougioukakis Nikos 2024
       <br>
       Note: The model is in its early stages, trained on a limited dataset, and is designed for basic functionality.
+      <br>
+      Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
     </div>
 
     <script src="/static/img-rec-app.js" defer></script>

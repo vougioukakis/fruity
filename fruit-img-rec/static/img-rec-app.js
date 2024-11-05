@@ -2,6 +2,9 @@ function addEvListenerToAddFactBtn(){
 	const button = document.getElementById('add-fact-btn');
     button.addEventListener('click', showFactInput);
 }
+document.getElementById('upload-button').addEventListener('click', function() {
+    document.getElementById('image-input').click();
+});
 
 function addEvListenerToGetFactBtn(){
 	const button = document.getElementById('get-fact-btn');
@@ -117,12 +120,12 @@ async function uploadImage(e){
 			showErrorResult(data.error);
 			return; // stop processing and show error message to user
 		} else {
-			document.getElementById('output-area').innerHTML = `
+			document.getElementById('output-area').innerHTML = `<ul>
             <li class="results-item">Fruit: ${data.name}</li>
             <li class="results-item">Calories: ${data.calories}</li>
             <li class="results-item">Carbs: ${data.carbs}g</li>
             <li class="results-item">Protein: ${data.protein}g</li>
-            <li class="results-item">Fat: ${data.fat}g</li>
+            <li class="results-item">Fat: ${data.fat}g</li></ul>
         `;
 			
 		}
@@ -191,6 +194,7 @@ function init() {
 	console.log("init running");
 	addEventListenerDiagnoseButton();
 	addEvListenerToImgInputField();
+	document.getElementById("fruit-img").src = 'static/assets/placeholder.png';
 	addEvListenerToGetFactBtn();
 	addEvListenerToAddFactBtn();
 	addEvListenerToSubmitFactBtn();
