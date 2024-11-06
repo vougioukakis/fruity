@@ -6,5 +6,4 @@ new fruit facts from the website.
 
 The server is made using Quart with Python, and the API using Express with JavaScript.
 
-This is a prototype design of the website, which is work in progress.
-<img width="629" alt="image" src="https://github.com/user-attachments/assets/26be8950-2526-4432-bb18-18b22947cf36">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/29b38cb0-aea6-4acb-9a8a-6850a72f4696">
