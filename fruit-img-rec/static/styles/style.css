@@ -9,10 +9,10 @@
     --green-light: #BBE9CA;
 }
 
-.bowlby-one-regular {
-    font-family: "Bowlby One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #header {
@@ -43,28 +43,22 @@ body {
 
 }
   
-  @keyframes moveBackground {
+@keyframes moveBackground {
     0% {
-      background-position: 0% 0%; /* Initial position */
+        background-position: 0% 0%; 
     }
     25% {
-      background-position: 25% 10%; /* Moves slightly to the right and down */
+        background-position: 25% 10%;
     }
     50% {
-      background-position: 50% 20%; /* Moves more to the right and down */
+        background-position: 50% 20%;
     }
     75% {
-      background-position: 75% 10%; /* Moves back to the right and slightly up */
+        background-position: 75% 10%;
     }
     100% {
-      background-position: 100% 0%; /* Final position, full horizontal movement */
+        background-position: 100% 0%;
     }
-  }
-/* Reset default margin and padding for all elements */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 
@@ -225,5 +219,37 @@ button:active {
       background-image: url('../assets/bg-land.png');
       background-size: cover;
       background-position: center;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #main-area{
+        flex-direction: column;
+        height: auto;
+    }
+
+    #button-container {
+        width: 100%;
+        display: flex;
+        margin-left: 0px;
+        padding-block: 20px;
+        height: 10rem;
+        flex-direction: row;
+    }
+
+    button{
+        flex: 1;
+        height: 70px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #content {
+        flex-direction: column;
+    }
+
+    .svg-icon {
+        width: clamp(25px, 3em, 70%);
+        height: clamp(25px, 3em, 70%);
     }
 }
