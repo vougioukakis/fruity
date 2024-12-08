@@ -13,9 +13,9 @@ Built with **Quart** (an asynchronous Python web framework), this application in
 
 ## Screenshots
 
-![Fruit Recognition App 1](https://github.com/user-attachments/assets/50f17c79-5633-488f-9c5b-919b00114a7a)
-![Fruit Recognition App 2](https://github.com/user-attachments/assets/a2e36428-5e0a-4070-8ce2-748015701d1a)
-![Fruit Recognition App 3](https://github.com/user-attachments/assets/c6c5295b-9f17-4d55-b6fb-c0b5c7b2cd1e)
+![Fruit Recognition App 1](screenshots/pic1.png)
+![Fruit Recognition App 2](screenshots/pic2.png)
+![Fruit Recognition App 3](screenshots/pic3.png)
 
 ---
 
