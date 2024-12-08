@@ -1,0 +1,286 @@
+:root {
+    --blue: #243CE6;
+    --blue-light: #C1C7F3;
+    --pink: #FF66C4;
+    --pink-light: #FFCBEB;
+    --yellow: #FFBD59;
+    --yellow-light: #FFE8C7;
+    --green:#00BF63;
+    --green-light: #BBE9CA;
+}
+
+/*
+TODO:
+- improve add fact screen
+- add landing animation 
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#header {
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    padding-inline: calc(9vw + 1vh);
+    padding-top: 6vh;
+    color: var(--blue);
+}
+
+#footer{
+    color: var(--blue);
+}
+
+body {
+    background-image: url('../assets/bg.png');
+    background-size: 120%; /* Ensures the image covers the entire body */
+    background-attachment: fixed; /* Keeps the background fixed as you scroll */
+    animation: moveBackground 20s infinite alternate; /* Animation with infinite loop */
+    font-family: "Alegreya Sans", sans-serif;
+    line-height: 1.6;
+
+
+}
+  
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 0%; 
+    }
+    25% {
+        background-position: 25% 10%;
+    }
+    50% {
+        background-position: 50% 20%;
+    }
+    75% {
+        background-position: 75% 10%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+
+
+ul {
+    list-style-type: none;
+    padding: 1vw;
+    color: var(--blue);
+}
+
+.fruit-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0.5vmin;
+    color: var(--blue);
+}
+
+#fruit-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+#main-area {
+    display: flex;
+    flex-direction: row;
+    padding-inline: calc(9vw + 1vh);
+    padding-block: calc(6vmin + -3vh);
+    height: clamp(390px, calc(100vh - 190px), 65vh);
+    /*! height: 400px; */
+}
+
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 3vmin;
+    background: rgba(255,255,255,0.4);
+    padding: 3vmin;
+    border-radius: 4vmin;
+}
+
+.input-bar-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    /*! padding: 10px; */
+    height: 100%;
+    border-radius: 1.75vmin;
+    /*! object-fit: cover; */
+}
+
+/* -------- BUTTONS ------------- */
+button {
+    border-radius: 4vmin;
+    border: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+button:active {
+    transform: translateY(10px);
+}
+
+#upload-button {
+    color: var(--blue);
+    background-color: var(--blue-light);
+    box-shadow: 0px 10px 0px -1px var(--blue);
+}
+#upload-button:active {
+    box-shadow: 0px 0px 0px -1px var(--blue);
+}
+
+#get-fact-btn {
+    color: var(--yellow);
+    background-color: var(--yellow-light);
+    box-shadow: 0px 10px 0px -1px var(--yellow);
+}
+#get-fact-btn:active{
+    box-shadow: 0px 0px 0px -1px var(--yellow);
+}
+
+#add-fact-btn {
+    color: var(--pink);
+    background-color: var(--pink-light);
+    box-shadow: 0px 10px 0px -1px var(--pink);
+}
+#add-fact-btn:active {
+    box-shadow: 0px 0px 0px -1px var(--pink);
+}
+
+
+#diagnose-button {
+    color: var(--green);
+    background-color: var(--green-light);
+    box-shadow: 0px 10px 0px -1px var(--green);
+}
+#diagnose-button:active {
+    box-shadow: 0px 0px 0px -1px var(--green);
+}
+
+.svg-icon {
+    max-width: 90%;
+    max-height: 90%;
+    width: clamp(45px, 3em, 70%);
+    height: clamp(45px, 3em, 70%);
+    fill: currentColor;
+}
+
+#fact-text{
+    padding: 1vw;
+    color: var(--blue);
+}
+
+#right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#output-area {
+    flex: 3;
+    padding: 16px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 1.75vmin;
+}
+
+#fact-container {
+    flex: 2;
+    padding: 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 1.75vmin;
+}
+
+#button-container {
+    width: 13vw;
+    display: inline-grid;
+    flex-direction: column;
+    gap: 3vh;
+    margin-left: 4vmin;
+    padding-bottom: 10px;
+}
+
+#fact-input-container {
+    position: absolute;
+    display: flex;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.7);
+    column-gap: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1vmin;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+#fact-input {
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    height: fit-content;
+    background: rgba(255,255,255,0.8);
+}
+
+#submit-fact-btn {
+    border-radius: 8px;
+    min-width: 60px;
+}
+
+#footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+}
+
+@media (max-aspect-ratio: 3/2) {
+    body {
+      background-image: url('../assets/bg-land.png');
+      background-size: cover;
+      background-position: center;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #main-area{
+        flex-direction: column;
+        height: auto;
+    }
+
+    #button-container {
+        width: 100%;
+        display: flex;
+        margin-left: 0px;
+        padding-block: 20px;
+        height: 7rem;
+        gap: 1vh;
+        flex-direction: row;
+    }
+
+    button{
+        flex: 1;
+        /*height: 70px;*/
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #content {
+        flex-direction: column;
+    }
+
+    .svg-icon {
+        width: clamp(25px, 3em, 70%);
+        height: clamp(25px, 3em, 70%);
+    }
+}

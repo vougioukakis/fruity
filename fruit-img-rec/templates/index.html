@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRUITY</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Bowlby+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="header">
+      FRUITY
+    </div>
+
+    <div id="main-area">
+      
+      <div id="content">
+        <div class="input-bar-container" id="bottom-bar">
+          <form class="file-upload" enctype="multipart/form-data" id="image-form">
+            <span id="file-upload-label" class="file-upload-label" style="display: none;">No file chosen</span>
+            <!--<label for="image-input" id="upload-button"></label>-->
+          </form>
+  
+          <img id="fruit-img">
+        </div>
+        
+        <div id="right">
+          <div id="output-area">
+            <ul>
+              <li>Click the camera button on the right to add a picture of a fruit!</li>
+            </ul>
+          </div>
+    
+          <div id="fact-container">
+            <div id="fact-text">Click the light bulb icon to get a random fruit fact!</div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div id="button-container">
+        <input type="file" form="image-form" name="disease-image" id="image-input" accept="image/*" style="display:none;"/>
+        <button id="upload-button"><label for="image-input"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M17.721,3,16.308,1.168A3.023,3.023,0,0,0,13.932,0H10.068A3.023,3.023,0,0,0,7.692,1.168L6.279,3Z"/><circle cx="12" cy="14" r="4"/><path d="M19,5H5a5.006,5.006,0,0,0-5,5v9a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V10A5.006,5.006,0,0,0,19,5ZM12,20a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,20Z"/></svg>
+        </label></button>
+        <button id="add-fact-btn"> <svg class="svg-icon"  id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm4 13h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 0 2z"/></svg></button>
+        <button id="get-fact-btn"><svg class="svg-icon" id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m5.868 15.583a8.938 8.938 0 0 1 -2.793-7.761 9 9 0 1 1 14.857 7.941 5.748 5.748 0 0 0 -1.804 3.237h-3.128v-8.184a3 3 0 0 0 2-2.816h-2a1 1 0 0 1 -2 0h-2a3 3 0 0 0 2 2.816v8.184h-3.125a6.538 6.538 0 0 0 -2.007-3.417zm2.132 5.417v3h8v-3z"/></svg></button>
+        <button id="diagnose-button" type="submit" form="image-form"> <svg class="svg-icon"  xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M20.492,7.969,10.954.975A5,5,0,0,0,3,5.005V19a4.994,4.994,0,0,0,7.954,4.03l9.538-6.994a5,5,0,0,0,0-8.062Z"/></svg>
+        </button>
+      </div>
+  
+    </div>
+
+    <div id="fact-input-container" style="display: none;">
+      <input type="text" id="fact-input" placeholder="Enter a new fruit fact!">
+      <button id="submit-fact-btn">Add</button>
+    </div>
+
+    <div id="footer">
+      Vougioukakis Nikos 2024
+      <br>
+      Note: The model is in its early stages, trained on a limited dataset, and is designed for basic functionality.
+      <br>
+      Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
+    </div>
+
+    <script src="/static/img-rec-app.js" defer></script>
+</body>
+</html>
